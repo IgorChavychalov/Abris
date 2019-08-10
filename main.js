@@ -3,7 +3,7 @@ inputs = document.querySelectorAll('input');
 for (let i=0; i < inputs.length; i++) {
   inputs[i].oninput = () => {
     addInputData(inputs);
-    drow();
+    draw();
   }
 }
 
@@ -21,15 +21,17 @@ function addInputData(node_list) {
 let canvas = document.getElementById('c1');
 ctx = canvas.getContext('2d');
 
-function drow() {
-  ctx.clearRect(0, 0, 900, 450);
+function draw() {
+  ctx.clearRect(0, 0, 1000, 500);
   ctx.strokeStyle = 'red';
   ctx.lineWidth = '5';
   ctx.beginPath();
-  ctx.moveTo(200, 150);
+  ctx.moveTo(500, 250);
+  let x = 0;
+  let y = 0;
   for (let i=0; i < inputDate.length; i++) {
-    let x = inputDate[i][0];
-    let y = inputDate[i][1];
+    x = inputDate[i][0];
+    y = inputDate[i][1];
     ctx.lineTo(x, y);
   }
   // ctx.closePath();
