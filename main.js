@@ -1,6 +1,7 @@
 inputs = document.querySelectorAll('input');
 output = document.getElementById('0');
 
+
 for (let i=0; i < inputs.length; i++) {
   inputs[i].oninput = () => {
     const inputDate = addInputData(inputs);
@@ -15,7 +16,7 @@ function addInputData(node_list) {
   let inputDate = [];
 
   for (let i=0; i < node_list.length-1; i=i+2) {
-    if (+node_list[i].value > 0 && +node_list[i+1].value > 0) {
+    if (node_list[i].value !== '' && node_list[i+1].value !== '') {
       inputDate.push([+node_list[i].value, +node_list[i+1].value]);
     }
   }
@@ -34,10 +35,10 @@ function CoordinatesFromInput(inputData) {
   inputData.unshift([500, 250]);
 
   for (let i=1; i < inputData.length; i++) {
-    let expression = inputData[i][0] * (pi / 180);
+    let expression = inputData[i][0] * pi/180;
 
-    let x = Math.cos(expression) * inputData[i][1];
-    let y = Math.sin(expression) * inputData[i][1];
+    let x = Math.sin(expression) * inputData[i][1];
+    let y = -(Math.cos(expression) * inputData[i][1]);
 
     console.log(`coordinatesFromInput-> x=${x}`);
     console.log(`coordinatesFromInput-> y=${y}`);
