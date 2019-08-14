@@ -18,6 +18,8 @@ from django.urls import path, re_path
 import mainapp.views as mainapp
 
 urlpatterns = [
+    re_path(r'^$', mainapp.index, name='index'),
+    re_path(r'^draw-list/$', mainapp.draw_list, name='draw_list'),
+
     path('admin/', admin.site.urls),
-    path('', mainapp.index),
 ]

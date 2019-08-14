@@ -1,74 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
+{% extends 'mainapp/base.html' %}
+{% load static %}
 
-<body>
-    <div class="container">
-        <div class="top">
-            <div class="header">
-            <div>
-                <ul class="menu">
-                    <div>
-                        <li class="main-button">
-                            <a href="draw-list.html">Чертежи</a>
-                        </li>
-                        <li class="main-button">Сохранить</li>
-                    </div>
-
-                    <li class="main-button right-elem">
-                        <a href="#">Вход</a>
-                    </li>
-                </ul>
-            </div>
+{% block menu %}
+    <li class="main-button">
+        <a href="{% url 'draw_list' %}">Чертежи</a>
+    </li>
+    <li class="main-button">Сохранить</li>
+{% endblock %}
 
 
-        </div>
-
-            <div class="content">
-                <div class="drawing border">
-                    <canvas id="c1" width="1000" height="500"></canvas>
-                </div>
-                <div></div>
-
-                <div class="property border">
-
-                <div>
-                    <span>Площадь</span>
-                    <div id='0' class="out-data"></div>
-                    <span>га</span>
-                </div>
-                <div class="input-data">
-                    <span>Угол</span>
-                    <span>Расстояние</span>
-                    <input id="1" name="x" type="text" placeholder="90">
-                    <input id="2" name="y" type="text" placeholder="100">
-                    <input id="3" name="x" type="text" placeholder="180">
-                    <input id="4" name="y" type="text" placeholder="100">
-                    <input id="5" name="y" type="text" placeholder="270">
-                    <input id="6" name="y" type="text" placeholder="100">
-                    <input id="7" name="y" type="text" placeholder="360">
-                    <input id="8" name="y" type="text" placeholder="100">
-                    <input id="9" name="x" type="text" placeholder="">
-                    <input id="10" name="y" type="text" placeholder="">
-                    <input id="11" name="x" type="text" placeholder="">
-                    <input id="12" name="y" type="text" placeholder="">
-                    <input id="13" name="y" type="text" placeholder="">
-                    <input id="14" name="y" type="text" placeholder="">
-                    <input id="15" name="y" type="text" placeholder="">
-                    <input id="16" name="y" type="text" placeholder="">
-
-                </div>
-            </div>
-        </div>
-        </div>
-
-        <div class="footer"></div>
+{% block content %}
+    <div class="drawing border">
+        <canvas id="c1" width="1000" height="500"></canvas>
     </div>
-<script src="/static/js/main.js"></script>
-</body>
 
-</html>
+    <div class="property border">
+        <div>
+            <span>Площадь</span>
+            <div id='0' class="out-data"></div>
+            <span>га</span>
+        </div>
+        <div class="input-data">
+            <span>Угол</span>
+            <span>Расстояние</span>
+            <input id="1" name="x" type="text" placeholder="90">
+            <input id="2" name="y" type="text" placeholder="100">
+            <input id="3" name="x" type="text" placeholder="180">
+            <input id="4" name="y" type="text" placeholder="100">
+            <input id="5" name="y" type="text" placeholder="270">
+            <input id="6" name="y" type="text" placeholder="100">
+            <input id="7" name="y" type="text" placeholder="360">
+            <input id="8" name="y" type="text" placeholder="100">
+            <input id="9" name="x" type="text" placeholder="">
+            <input id="10" name="y" type="text" placeholder="">
+            <input id="11" name="x" type="text" placeholder="">
+            <input id="12" name="y" type="text" placeholder="">
+            <input id="13" name="y" type="text" placeholder="">
+            <input id="14" name="y" type="text" placeholder="">
+            <input id="15" name="y" type="text" placeholder="">
+            <input id="16" name="y" type="text" placeholder="">
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

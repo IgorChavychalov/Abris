@@ -1,39 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
+{% extends 'mainapp/base.html' %}
 
-<body>
-    <div class="container">
+{% block menu %}
+    <li class="main-button">
+        <a href="{% url 'index' %}">Новый чертёж</a>
+    </li>
+{% endblock %}
 
-        <div class="top">
-            <div class="header">
-            <div>
-                <ul class="menu">
-                    <li class="main-button">
-                        <a href="index.html">Новый чертёж</a>
-                    </li>
-                    <li class="main-button">Вход</li>
-                </ul>
-            </div>
-        </div>
 
-            <div class="content">
-            <ul class="draw-list">
-                <li><a href="index.html">Чертёж 1</a></li>
-                <li><a href="index.html">Чертёж 2</a></li>
-                <li><a href="index.html">Чертёж 3</a></li>
-                <li><a href="index.html">Чертёж 4</a></li>
-            </ul>
-        </div>
-        </div>
-
-        <div class="footer"></div>
-    </div>
-
-</body>
-
-</html>
+{% block content %}
+    <ul class="draw-list">
+        <li><a href="index.html">Чертёж 1</a></li>
+        <li><a href="index.html">Чертёж 2</a></li>
+        <li><a href="index.html">Чертёж 3</a></li>
+        <li><a href="index.html">Чертёж 4</a></li>
+    </ul>
+{% endblock %}
