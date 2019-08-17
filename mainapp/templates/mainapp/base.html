@@ -25,7 +25,11 @@
                     </div>
 
                     <li class="main-button right-elem">
-                        <a href="#">Вход</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'auth:logout' %}">выйти</a>
+                        {% else %}
+                            <a href="{% url 'auth:login' %}">войти</a>
+                        {% endif %}
                     </li>
                 </ul>
             </div>

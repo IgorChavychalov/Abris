@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from mainapp.models import Draw, Polygons
 from django.contrib.auth.models import User
-# from authapp.models import ShopUser
+from authapp.models import User
 
 import os
 import json
@@ -37,6 +37,6 @@ class Command(BaseCommand):
 
         # # Создаем суперпользователя при помощи менеджера модели
         if not User.objects.filter(username='abris').exists():
-            super_user = User.objects.create_superuser('abris', 'abris@mail.ru', 'abris1379')
+            User.objects.create_superuser('abris', 'abris@mail.ru', 'abris1379')
         # if not ShopUser.objects.filter(username='django').exists():
         #     super_user = ShopUser.objects.create_superuser('django', 'protor_fenix@mail.ru', 'geekbrains', age=25)
