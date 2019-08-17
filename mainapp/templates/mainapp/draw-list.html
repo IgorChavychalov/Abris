@@ -1,17 +1,17 @@
 {% extends 'mainapp/base.html' %}
+{% load static %}
 
 {% block menu %}
     <li class="main-button">
-        <a href="{% url 'index' %}">Новый чертёж</a>
+        <a href="{% url 'main:index' %}">Новый чертёж</a>
     </li>
 {% endblock %}
 
 
 {% block content %}
     <ul class="draw-list">
-        <li><a href="index.html">Чертёж 1</a></li>
-        <li><a href="index.html">Чертёж 2</a></li>
-        <li><a href="index.html">Чертёж 3</a></li>
-        <li><a href="index.html">Чертёж 4</a></li>
+        {% for paint in blueprints %}
+            <li><a href="#">{{ paint.name }} {{ paint.forestry }} {{ paint.quarter }} {{ paint.letter }}</a></li>
+        {%  endfor %}
     </ul>
 {% endblock %}
