@@ -1,6 +1,5 @@
 from django.db import models
-from django.core.validators import validate_comma_separated_integer_list
-# from django.contrib.gis.db import models
+from django.conf import settings
 
 
 class Draw(models.Model):
@@ -25,3 +24,9 @@ class Polygons(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.operating}"
+
+
+class UserDraw(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_draw')
+    draw = models.ForeignKey(Draw, on_delete=models.CASCADE)
+    add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)

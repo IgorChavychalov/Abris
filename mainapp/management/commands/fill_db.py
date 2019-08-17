@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from mainapp.models import Draw, Polygons
+from mainapp.models import Draw, Polygons, UserDraw
 from django.contrib.auth.models import User
 from authapp.models import User
 
@@ -38,5 +38,10 @@ class Command(BaseCommand):
         # # Создаем суперпользователя при помощи менеджера модели
         if not User.objects.filter(username='abris').exists():
             User.objects.create_superuser('abris', 'abris@mail.ru', 'abris1379')
-        # if not ShopUser.objects.filter(username='django').exists():
-        #     super_user = ShopUser.objects.create_superuser('django', 'protor_fenix@mail.ru', 'geekbrains', age=25)
+
+        userdraw_file = load_from_json('userdraw')
+        for elem in userdraw_file:
+            UserDraw.objects.create(**elem)
+
+
+

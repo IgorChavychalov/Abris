@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from mainapp.models import UserDraw
 # Create your views here.
 
 
@@ -11,17 +11,21 @@ def index(request):
 
 
 def draw_list(request):
-    blueprints = [
-        {
-            "name": "чертёж-1",
-            "forestry": "Пригородное",
-            "quarter": "11",
-            "letter": "11"
-        }
-    ]
+    blueprints = request.user.user_draw.all()
+
+
+    # blueprints = [
+    #     {
+    #         "name": "чертёж-1",
+    #         "forestry": "Пригородное",
+    #         "quarter": "11",
+    #         "letter": "11"
+    #     }
+    # ]
     context = {
         "page_title": "Чертежи",
-        "blueprints": blueprints
+        "blueprints": blueprints,
     }
 
     return render(request, 'mainapp/draw-list.html', context)
+
