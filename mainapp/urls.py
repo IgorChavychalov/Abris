@@ -21,4 +21,5 @@ app_name = 'mainapp'
 urlpatterns = [
     re_path(r'^$', mainapp.index, name='index'),
     re_path(r'^draw-list/$', mainapp.draw_list, name='draw_list'),
+    re_path(r'^draw/(?P<pk>\d+)/$', mainapp.draw, name='draw'),
 ]

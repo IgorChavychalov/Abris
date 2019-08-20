@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from mainapp.models import UserDraw
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+from mainapp.models import Draw, UserDraw, Polygons
 # Create your views here.
 
 
@@ -29,3 +29,16 @@ def draw_list(request):
 
     return render(request, 'mainapp/draw-list.html', context)
 
+
+def draw(request, pk):
+    get_draw = get_object_or_404(Draw, pk=pk)
+    get_polygons = Polygons.objects.exclude(pk=get_draw.pk)
+    coordinates = get_polygons[0].coordinates.split(',')
+
+    context = {
+        "page_title": "Чертежи",
+        "object": get_polygons[0],
+        "coordinates": coordinates
+    }
+
+    return render(request, 'mainapp/draw.html', context)

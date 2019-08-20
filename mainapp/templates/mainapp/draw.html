@@ -1,0 +1,38 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block menu %}
+    <li class="main-button">
+        <a href="{% url 'main:draw_list' %}">Чертежи</a>
+    </li>
+    <li class="main-button">Сохранить</li>
+{% endblock %}
+
+
+{% block content %}
+    <div class="drawing border">
+        <canvas id="c1" width="1000" height="500"></canvas>
+    </div>
+
+    <div class="property border">
+        <div>
+            <span>Площадь</span>
+            <div id='0' class="out-data"></div>
+            <span>га</span>
+        </div>
+        <div class="input-data">
+            <span>Угол</span>
+            <span>Расстояние</span>
+
+            {% for elem in coordinates %}
+                <input type="text" value="{{ elem }}">
+            {% endfor %}
+            
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script defer src="{% static 'js/main.js' %}"></script>
+{% endblock %}
