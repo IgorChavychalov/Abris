@@ -2,14 +2,22 @@ inputs = document.querySelectorAll('input');
 output = document.getElementById('0');
 
 
+if (inputs[0].value) {
+  start(inputs)
+}
+
 for (let i=0; i < inputs.length; i++) {
-  inputs[i].oninput = () => {
+  inputs[i].onchange = () => {
+    start(inputs)
+  }
+}
+
+function start(inputs) {
     const inputDate = addInputData(inputs);
     const coordinates = CoordinatesFromInput(inputDate);
     toDraw(coordinates);
     const area = countArea(coordinates);
     insertArea(area);
-  }
 }
 
 function Logger(f) {
@@ -34,9 +42,6 @@ function addInputData(node_list) {
   }
   return inputDate;
 }
-
-let canvas = document.getElementById('c1');
-ctx = canvas.getContext('2d');
 
 function CoordinatesFromInput(inputData) {
   const pi = Math.PI;
@@ -64,6 +69,9 @@ function CoordinatesFromInput(inputData) {
 
 toDraw = Logger(toDraw);
 function toDraw(coordinates) {
+  let canvas = document.getElementById('c1');
+  let ctx = canvas.getContext('2d');
+
   ctx.clearRect(0, 0, 1000, 500);
   ctx.strokeStyle = 'red';
   ctx.lineWidth = '5';
