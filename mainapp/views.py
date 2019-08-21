@@ -32,9 +32,8 @@ def draw_list(request):
 
 def draw(request, pk):
     get_draw = get_object_or_404(Draw, pk=pk)
-    get_polygons = Polygons.objects.exclude(pk=get_draw.pk)
+    get_polygons = Polygons.objects.filter(pk=get_draw.pk)
     coordinates = get_polygons[0].coordinates.split(',')
-
     context = {
         "page_title": "Чертежи",
         "object": get_polygons[0],
