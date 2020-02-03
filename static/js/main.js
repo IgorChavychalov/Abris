@@ -1,6 +1,59 @@
 inputs = document.querySelectorAll('input');
 output = document.getElementById('0');
 
+window.onload = function() {
+  $("#btn-save").click(function () {
+    let coordinates = JSON.stringify(getInputData(inputs));
+    $.ajax({
+      type: "GET",
+      dataType: 'json',
+      url: '/draw/add/',
+      data: {
+          'coordinates': coordinates
+      },
+      success: function(data) {
+        // window.history.replaceState(state, title, url);
+        console.log('куда то попали');
+        console.log(data);
+
+        // $(`.draw/${pk}`)
+      },
+
+      error: function (xhr, status, error) {
+          console.log(error);
+      }
+    })
+  })
+};
+
+// window.onload = function() {
+//   $("#btn-save").click(function () {
+//     let coordinates = JSON.stringify(getInputData(inputs));
+//     $.ajax({
+//       type: "POST",
+//       dataType: 'json',
+//       url: '/draw/add/',
+//       data: {
+//           'coordinates': coordinates,
+//           csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+//       },
+//       success: function(data) {
+//         // window.history.replaceState(state, title, url);
+//         console.log('куда то попали');
+//         console.log(data);
+//
+//         // $(`.draw/${pk}`)
+//       },
+//
+//       error: function (xhr, status, error) {
+//           console.log(error);
+//       }
+//     })
+//   })
+// };
+
+
+
 
 if (inputs[0].value) {
   start(inputs)
@@ -13,7 +66,7 @@ for (let i=0; i < inputs.length; i++) {
 }
 
 function start(inputs) {
-    const inputDate = addInputData(inputs);
+    const inputDate = getInputData(inputs);
     const coordinates = CoordinatesFromInput(inputDate);
     toDraw(coordinates);
     const area = countArea(coordinates);
@@ -31,8 +84,8 @@ function Logger(f) {
   return wrapper;
 }
 
-addInputData = Logger(addInputData);
-function addInputData(node_list) {
+getInputData = Logger(getInputData);
+function getInputData(node_list) {
   let inputDate = [];
 
   for (let i=0; i < node_list.length-1; i=i+2) {

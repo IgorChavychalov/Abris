@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 class Draw(models.Model):
-    name = models.CharField(verbose_name='название', max_length=64, unique=True)
+    name = models.CharField(verbose_name='название', max_length=64)
     forestry = models.CharField(verbose_name='лесничество', max_length=32)
     quarter = models.CharField(verbose_name='квартал', max_length=4)
     letter = models.CharField(verbose_name='выдел', max_length=4)
