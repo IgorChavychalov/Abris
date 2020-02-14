@@ -6,7 +6,7 @@
     <li class="main-button">
         <a href="{% url 'main:draw_list' %}">Чертежи</a>
     </li>
-    <li class="main-button">Сохранить</li>
+    <li href="{% url 'main:draw_update' context.pk %}" class="main-button">Сохранить</li>
 {% endblock %}
 
 

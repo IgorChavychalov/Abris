@@ -47,7 +47,7 @@ def draw_add(request):
         coordinates = request.GET.get('coordinates')
         j_coordinates = json.loads(coordinates)
         data = list_to_string(j_coordinates)
-        print(data)
+
         new_draw = Draw(name='Чертёж',
                         forestry='Пригородное',
                         quarter='100',
@@ -64,6 +64,32 @@ def draw_add(request):
         new_polygon.save()
         user_draw.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def draw_update(request, pk):
+    if request.is_ajax():
+        coordinates = request.GET.get('coordinates')
+        j_coordinates = json.loads(coordinates)
+        data = list_to_string(j_coordinates)
+
+        user_draw = get_object_or_404(UserDraw, pk=pk)
+        draw_pk = user_draw.draw.pk
+        new_coordinate = get_object_or_404(Polygons, pk=draw_pk)
+        new_coordinate.coordinates = data
+        new_coordinate.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def draw_delete(request, pk):
+    get_object_or_404(UserDraw, pk=pk).delete()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
 
 
 
@@ -159,6 +185,7 @@ def draw(request, pk):
     coordinates = get_polygons[0].coordinates.split(',')
     context = {
         "page_title": "Чертежи",
-        "coordinates": coordinates
+        "coordinates": coordinates,
+        "pk": pk,
     }
     return render(request, 'mainapp/draw.html', context)
