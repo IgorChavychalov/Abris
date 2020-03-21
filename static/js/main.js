@@ -7,16 +7,13 @@ window.onload = function() {
     $.ajax({
       type: "GET",
       dataType: 'json',
-      url: '/draw/add/',
+      url: '/draw_update/',
       data: {
           'coordinates': coordinates
       },
       success: function(data) {
-        // window.history.replaceState(state, title, url);
         console.log('куда то попали');
         console.log(data);
-
-        // $(`.draw/${pk}`)
       },
 
       error: function (xhr, status, error) {

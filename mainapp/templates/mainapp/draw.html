@@ -4,9 +4,8 @@
 
 {% block menu %}
     <li class="main-button">
-        <a href="{% url 'main:draw_list' %}">Чертежи</a>
+        <a href="{% url 'main:index' %}">Чертежи</a>
     </li>
-    <li href="{% url 'main:draw_update' context.pk %}" class="main-button">Сохранить</li>
 {% endblock %}
 
 
@@ -25,11 +24,30 @@
             <span>Угол</span>
             <span>Расстояние</span>
 
-            {% for elem in coordinates %}
-                <input type="text" value="{{ elem }}">
-            {% endfor %}
+            {% if coordinates %}
+                {% for elem in coordinates %}
+                    <input type="text" value="{{ elem }}">
+                {% endfor %}
+            {% else %}
+                <input id="1" name="x" type="text" placeholder="90">
+                <input id="2" name="y" type="text" placeholder="100">
+                <input id="3" name="x" type="text" placeholder="180">
+                <input id="4" name="y" type="text" placeholder="100">
+                <input id="5" name="y" type="text" placeholder="270">
+                <input id="6" name="y" type="text" placeholder="100">
+                <input id="7" name="y" type="text" placeholder="360">
+                <input id="8" name="y" type="text" placeholder="100">
+                <input id="9" name="x" type="text" placeholder="">
+                <input id="10" name="y" type="text" placeholder="">
+                <input id="11" name="x" type="text" placeholder="">
+                <input id="12" name="y" type="text" placeholder="">
+                <input id="13" name="y" type="text" placeholder="">
+                <input id="14" name="y" type="text" placeholder="">
+                <input id="15" name="y" type="text" placeholder="">
+                <input id="16" name="y" type="text" placeholder="">
+            {% endif %}
 
-
+            <a id="btn-save" href="{% url 'main:draw_update' pk %}" class="main-button">Сохранить</a>
         </div>
     </div>
 {% endblock %}
