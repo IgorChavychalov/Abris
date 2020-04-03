@@ -1,6 +1,9 @@
 inputs = document.querySelectorAll('input');
 output = document.getElementById('0');
 
+
+const pk = $("#pk").data('pk');
+
 window.onload = function() {
   $("#btn-save").click(function () {
     let coordinates = JSON.stringify(getInputData(inputs));
@@ -9,7 +12,8 @@ window.onload = function() {
       dataType: 'json',
       url: '/draw_update/',
       data: {
-          'coordinates': coordinates
+          'coordinates': coordinates,
+        // 'csrfmiddlewaretoken': CSRF_TOKEN
       },
       success: function(data) {
         console.log('куда то попали');

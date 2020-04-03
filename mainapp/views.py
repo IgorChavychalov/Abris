@@ -83,7 +83,9 @@ def polygon_add(draw, polygon_name='основной', operating=True):
 
 @login_required
 def draw_update(request, pk):
+    print(pk)
     if request.is_ajax():
+        print(request)
         coordinates = request.GET.get('coordinates')
         print(coordinates)
         j_coordinates = json.loads(coordinates)

@@ -1,6 +1,5 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-{% csrf_token %}
 
 {% block menu %}
     <li class="main-button">
@@ -46,8 +45,8 @@
                 <input id="15" name="y" type="text" placeholder="">
                 <input id="16" name="y" type="text" placeholder="">
             {% endif %}
-
-            <a id="btn-save" href="{% url 'main:draw_update' pk %}" class="main-button">Сохранить</a>
+            <div id="pk" data-pk="{{ pk }}"></div>
+            <a id="btn-save"  href="{% url 'main:draw_update' pk %}" class="main-button">Сохранить</a>
         </div>
     </div>
 {% endblock %}
@@ -55,4 +54,5 @@
 {% block js %}
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script defer src="{% static 'js/main.js' %}"></script>
+    <script > let CSRF_TOKEN = "{{ csrf_token }}"</script>
 {% endblock %}
