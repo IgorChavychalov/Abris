@@ -23,6 +23,6 @@ urlpatterns = [
     re_path(r'^draw-add/$', mainapp.draw_add, name='draw_add'),
     re_path(r'^draw/(?P<pk>\d+)/$', mainapp.draw_read, name='draw'),
     re_path(r'^draw-delete/(?P<pk>\d+)/$', mainapp.draw_delete, name='draw_delete'),
-    re_path(r'^draw-update/(?P<pk>\d+)/$', mainapp.draw_update, name='draw_update'),
-    # re_path(r'^draw-update/(?P<pk>\d+)/?coordinates=/$', mainapp.draw_update, name='draw_update'),
+    re_path(r'^draw-update/(?P<pk>\d+)/', mainapp.draw_update, name='draw_update'),
+    # re_path(r'^draw-update/(?P<pk>\d+)/?coordinates=/', mainapp.draw_update, name='draw_update'),
 ]

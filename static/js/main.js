@@ -7,10 +7,11 @@ const pk = $("#pk").data('pk');
 window.onload = function() {
   $("#btn-save").click(function () {
     let coordinates = JSON.stringify(getInputData(inputs));
+
     $.ajax({
       type: "GET",
-      dataType: 'json',
-      url: '/draw_update/',
+      // dataType: 'json',
+      url: '/draw-update/' + pk + '/',
       data: {
           'coordinates': coordinates,
         // 'csrfmiddlewaretoken': CSRF_TOKEN

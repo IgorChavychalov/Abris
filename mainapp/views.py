@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, HttpResponse
 from mainapp.models import Draw, UserDraw, Polygons
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -83,9 +83,7 @@ def polygon_add(draw, polygon_name='основной', operating=True):
 
 @login_required
 def draw_update(request, pk):
-    print(pk)
-    if request.is_ajax():
-        print(request)
+    if request.is_ajax() and request.GET:
         coordinates = request.GET.get('coordinates')
         print(coordinates)
         j_coordinates = json.loads(coordinates)
