@@ -57,13 +57,13 @@ def draw_delete(request, pk):
 
 
 @login_required
-def draw_read(request, pk):
+def draw(request, pk):
     get_draw = get_object_or_404(UserDraw, pk=pk).draw
     get_polygons = Polygons.objects.filter(pk=get_draw.pk)
     if get_polygons:
         coordinates = get_polygons[0].coordinates.split(',')
     else:
-        coordinates = []
+        coordinates = "0,0"
 
     context = {
         "page_title": get_draw.name,
@@ -76,7 +76,7 @@ def draw_read(request, pk):
 def polygon_add(draw, polygon_name='основной', operating=True):
     new_polygon = Polygons(draw=draw,
                            name=polygon_name,
-                           coordinates=[],
+                           coordinates='0,0',
                            operating=operating)
     new_polygon.save()
 
@@ -95,6 +95,8 @@ def draw_update(request, pk):
         new_coordinate.coordinates = data
         new_coordinate.save()
 
+    # adress = 'mainapp:draw'
+    # return HttpResponseRedirect(reverse(adress, kwargs={'pk': pk}))
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
